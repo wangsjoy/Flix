@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *connectionActivityView;
 @end
 
 @implementation MoviesViewController
@@ -27,12 +27,17 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self.connectionActivityView startAnimating]; //start animating activity
     [self fetchMovies];
+    [self.connectionActivityView stopAnimating]; //stop animating
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0]; //so that the refresh icon doesn't hover over any cells
 //    [self.tableView addSubview:self.refreshControl]; //same as insertSubview, but refresh icon may hover cells
+    
+
+//    NSLog(@"Stopped Animation");
     
 }
 
@@ -45,8 +50,23 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
                NSLog(@"%@", [error localizedDescription]);
+               UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies" message:@"The Internet Connection appears to be offline." preferredStyle:(UIAlertControllerStyleAlert)];
+               // create an OK action
+               UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                                  style:UIAlertActionStyleDefault
+                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                        // handle response here.
+                                                                }];
+               // add the OK action to the alert controller
+               [alert addAction:okAction];
+               [self presentViewController:alert animated:YES completion:^{
+                   // optional code for what happens after the alert controller has finished presenting
+               }];
+               
            }
            else {
+
+               NSLog(@"Started Animation");
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                
                NSLog(@"%@", dataDictionary);
@@ -61,6 +81,7 @@
                // TODO: Get the array of movies
                // TODO: Store the movies in a property to use elsewhere
                // TODO: Reload your table view data
+
            }
         [self.refreshControl endRefreshing]; //end refreshing
        }];
