@@ -119,10 +119,7 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
    
-    NSDictionary *movie = self.filteredData[indexPath.item]; //right movie associated with right item, uncommented for search bar
-//    NSDictionary *movie = self.filteredData[indexPath.item]; //right movie associated with right item
-
-    
+    NSDictionary *movie = self.filteredData[indexPath.item]; //right movie associated with right item
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
@@ -151,7 +148,7 @@
         }];
         self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
         
-//        NSLog(@"%@", self.filteredData);
+        NSLog(@"%@", self.filteredData);
 
     }
     else {
@@ -160,6 +157,21 @@
 
     [self.collectionView reloadData];
 
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    
+    self.filteredData = self.data; //reset filters
+    [self.collectionView reloadData]; //reload collection view
+    
 }
 
 @end
