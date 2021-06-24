@@ -56,6 +56,7 @@
                                                                   style:UIAlertActionStyleDefault
                                                                 handler:^(UIAlertAction * _Nonnull action) {
                                                                         // handle response here.
+                                                                        [self fetchMovies];
                                                                 }];
                // add the OK action to the alert controller
                [alert addAction:okAction];

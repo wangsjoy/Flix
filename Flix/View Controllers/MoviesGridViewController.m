@@ -9,12 +9,16 @@
 #import "MovieCollectionCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "PosterDetailsViewController.h"
+#import "DetailsViewController.h"
 
 
 @interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) NSArray *filteredData;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -40,6 +44,12 @@
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+//    self.searchBar.delegate = self;
+//
+//    self.data = self.movies;
+//
+//    self.filteredData = self.data;
     
 }
 
@@ -74,6 +84,7 @@
                NSLog(@"%@", dataDictionary);
                
                self.movies = dataDictionary[@"results"];
+               
                [self.collectionView reloadData];
                
            }
@@ -86,23 +97,38 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    // Get the new view controller using [segue destinationViewController].
+//    // Pass the selected object to the new view controller.
+//
+//    UICollectionViewCell *tappedCell = sender;
+//    NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+//    NSDictionary *movie = self.movies[indexPath.item];
+//    PosterDetailsViewController *postersDetailViewController = [segue destinationViewController];
+//    postersDetailViewController.movie = movie;
+//    NSLog(@"Tapping into Poster Cell!");
+//}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-    UICollectionViewCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
-    NSDictionary *movie = self.movies[indexPath.item];
-    PosterDetailsViewController *postersDetailViewController = [segue destinationViewController];
-    postersDetailViewController.movie = movie;
-    NSLog(@"Tapping into Poster Cell!");
+    if ([segue.identifier isEqualToString:@"detailsSegue"]){
+        UICollectionViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+        NSDictionary *movie = self.movies[indexPath.item];
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.movie = movie;
+        NSLog(@"Tapping into Poster Cell!");
+    } else {
+        NSLog(@"Error occurred");
+    }
 }
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
    
-    NSDictionary *movie = self.movies[indexPath.item]; //right movie associated with right item
+    NSDictionary *movie = self.movies[indexPath.item]; //right movie associated with right item, uncommented for search bar
+//    NSDictionary *movie = self.filteredData[indexPath.item]; //right movie associated with right item
+
     
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
@@ -115,8 +141,31 @@
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+//    return self.movies.count; //uncommented out for search bar implementation
     return self.movies.count;
 }
 
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+//
+//    if (searchText.length != 0) {
+//        NSLog(@"Search greater than 1");
+//
+//
+//
+//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
+//            return [evaluatedObject containsString:searchText];
+//        }];
+//        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
+//
+//        NSLog(@"%@", self.filteredData);
+//
+//    }
+//    else {
+//        self.filteredData = self.data;
+//    }
+//
+//    [self.collectionView reloadData];
+//
+//}
 
 @end
