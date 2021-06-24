@@ -10,7 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
 
-@interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -28,6 +28,7 @@
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.searchBar.delegate = self;
     
     [self fetchMovies];
     
@@ -42,12 +43,6 @@
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-    
-//    self.searchBar.delegate = self;
-//
-//    self.data = self.movies;
-//
-//    self.filteredData = self.data;
     
 }
 
@@ -83,6 +78,18 @@
                
                self.movies = dataDictionary[@"results"];
                
+               NSLog(@"Printing Movies:");
+               for (NSDictionary *movie in self.movies){
+                   NSLog(@"%@", movie);
+                   NSLog(@"%@", movie[@"title"]);
+               }
+               
+               NSLog(@"Printing Movies Alone:");
+               NSLog(@"%@", self.movies);
+
+               self.data = self.movies;
+               self.filteredData = self.data;
+               
                [self.collectionView reloadData];
                
            }
@@ -99,7 +106,7 @@
     if ([segue.identifier isEqualToString:@"detailsSegue"]){
         UICollectionViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
-        NSDictionary *movie = self.movies[indexPath.item];
+        NSDictionary *movie = self.filteredData[indexPath.item];
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.movie = movie;
         NSLog(@"Tapping into Poster Cell!");
@@ -112,7 +119,7 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
    
-    NSDictionary *movie = self.movies[indexPath.item]; //right movie associated with right item, uncommented for search bar
+    NSDictionary *movie = self.filteredData[indexPath.item]; //right movie associated with right item, uncommented for search bar
 //    NSDictionary *movie = self.filteredData[indexPath.item]; //right movie associated with right item
 
     
@@ -128,30 +135,31 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 //    return self.movies.count; //uncommented out for search bar implementation
-    return self.movies.count;
+    return self.filteredData.count;
 }
 
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-//
-//    if (searchText.length != 0) {
-//        NSLog(@"Search greater than 1");
-//
-//
-//
-//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary *bindings) {
-//            return [evaluatedObject containsString:searchText];
-//        }];
-//        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
-//
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+
+    if (searchText.length != 0) {
+        NSLog(@"Search greater than 1");
+
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
+            NSLog(@"Filtered: ");
+            NSLog(@"%@", evaluatedObject[@"title"]);
+            NSLog(@"End of Filtered: ");
+            return [evaluatedObject[@"title"] containsString:searchText];
+        }];
+        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
+        
 //        NSLog(@"%@", self.filteredData);
-//
-//    }
-//    else {
-//        self.filteredData = self.data;
-//    }
-//
-//    [self.collectionView reloadData];
-//
-//}
+
+    }
+    else {
+        self.filteredData = self.data;
+    }
+
+    [self.collectionView reloadData];
+
+}
 
 @end
