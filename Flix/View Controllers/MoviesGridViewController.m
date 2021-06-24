@@ -8,9 +8,7 @@
 #import "MoviesGridViewController.h"
 #import "MovieCollectionCell.h"
 #import "UIImageView+AFNetworking.h"
-#import "PosterDetailsViewController.h"
 #import "DetailsViewController.h"
-
 
 @interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -97,18 +95,6 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//
-//    UICollectionViewCell *tappedCell = sender;
-//    NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
-//    NSDictionary *movie = self.movies[indexPath.item];
-//    PosterDetailsViewController *postersDetailViewController = [segue destinationViewController];
-//    postersDetailViewController.movie = movie;
-//    NSLog(@"Tapping into Poster Cell!");
-//}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"detailsSegue"]){
         UICollectionViewCell *tappedCell = sender;
