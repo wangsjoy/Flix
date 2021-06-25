@@ -20,11 +20,12 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="187" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q1Q-n2-IP1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="separatorColor" systemColor="systemRedColor"/>
+                                <color key="separatorColor" systemColor="systemYellowColor"/>
                                 <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="Pjh-lL-Cpw">
                                     <rect key="frame" x="0.0" y="236.00000034679067" width="414" height="95"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="color" systemColor="linkColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="color" systemColor="systemBackgroundColor"/>
                                 </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="187" id="HJt-N1-54O" customClass="MovieCell">
@@ -52,11 +53,12 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-bj-pev">
                                                     <rect key="frame" x="20" y="16" width="108" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" systemColor="linkColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" identifier="MovieCell"/>
                                         <connections>
                                             <outlet property="posterView" destination="Qd7-bj-pev" id="2jF-fs-y6J"/>
@@ -98,7 +100,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wCy-jx-K1G">
                                 <rect key="frame" x="0.0" y="132" width="414" height="764"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="rmy-Zf-BNq">
                                     <size key="itemSize" width="170" height="235"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -163,25 +165,30 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZj-Z6-gwT">
-                                        <rect key="frame" x="24" y="203" width="100" height="151"/>
+                                        <rect key="frame" x="16" y="199" width="121" height="182"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRq-6N-lqi">
-                                        <rect key="frame" x="132" y="286" width="257" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRq-6N-lqi">
+                                        <rect key="frame" x="157" y="268" width="243" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7y-Ep-4U7">
-                                        <rect key="frame" x="24" y="436" width="382" height="21"/>
+                                        <rect key="frame" x="24" y="434" width="382" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3T-bO-NqJ">
+                                        <rect key="frame" x="24" y="413" width="382" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                    </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YyH-WW-v8f">
-                                        <rect key="frame" x="24" y="362" width="126" height="37"/>
+                                        <rect key="frame" x="157" y="344" width="133" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="trailerPlay" translatesAutoresizingMaskIntoConstraints="NO" id="15P-EB-XGt">
@@ -196,10 +203,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="2MW-Im-red"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="DPa-Hv-yLg"/>
@@ -241,7 +248,7 @@
                             </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YBg-Sj-97L"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <outlet property="webkitView" destination="vRI-p1-VQe" id="sCG-es-gK9"/>
@@ -255,7 +262,7 @@
         <scene sceneID="rJh-Oo-ePp">
             <objects>
                 <tabBarController id="A6S-At-rpy" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zP1-92-PNE">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionIndicatorImage="play.rectangle.fill" catalog="system" id="zP1-92-PNE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -273,7 +280,7 @@
         <scene sceneID="ifA-WV-UIl">
             <objects>
                 <navigationController id="Ody-ND-1JU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Posters" selectedImage="burst.fill" catalog="system" id="Tkk-w9-8jq"/>
+                    <tabBarItem key="tabBarItem" title="Posters" selectedImage="ticket.fill" catalog="system" id="Tkk-w9-8jq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NSU-HU-JNO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -290,7 +297,7 @@
         <scene sceneID="lI8-nQ-TkV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xw2-Bj-uzd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Now Playing" id="iqU-4a-2NQ"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" selectedImage="play.rectangle.fill" catalog="system" id="iqU-4a-2NQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d93-gD-AL5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -307,22 +314,20 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GKY-hH-uua"/>
+        <segue reference="Djn-jf-PHs"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="burst.fill" catalog="system" width="128" height="117"/>
+        <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
+        <image name="ticket.fill" catalog="system" width="128" height="84"/>
         <image name="trailerPlay" width="60" height="60"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
