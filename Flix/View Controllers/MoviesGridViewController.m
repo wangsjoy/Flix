@@ -24,31 +24,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    //set up the data source and the delegate
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.searchBar.delegate = self;
     
     [self fetchMovies];
     
+    //set up layout and adjust spacing between items and lines
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
-    
     layout.minimumInteritemSpacing = 5;
     layout.minimumLineSpacing = 5;
     
-    
-    
+    //ensure 2 posters per life
     CGFloat postersPerLine = 2;
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-    
 }
 
 - (void)fetchMovies{
-    // Do any additional setup after loading the view.
     
+    //Send API Get Request for Now Playing Movie Controls
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=f95fc0b1f5e8e70f10befe96260c1cd5"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -60,12 +58,11 @@
                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Try Again"
                                                                   style:UIAlertActionStyleDefault
                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                        // handle response here.
+                                                                    [self fetchMovies]; //attempt to reload page
                                                                 }];
                // add the OK action to the alert controller
                [alert addAction:okAction];
                [self presentViewController:alert animated:YES completion:^{
-                   // optional code for what happens after the alert controller has finished presenting
                }];
                
            }
