@@ -42,7 +42,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![](https://i.imgur.com/YYzPMIy.gif)
+![](https://i.imgur.com/ZRmtEoa.gif)
 
 GIF created with [EZGif](https://ezgif.com).
 
