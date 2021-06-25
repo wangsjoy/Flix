@@ -42,9 +42,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-Link to GIF (in case of upload size limit): https://media.giphy.com/media/GkWLqSIAlGirJdYb1Z/giphy.gif
-
-<iframe src="https://giphy.com/embed/GkWLqSIAlGirJdYb1Z" width="241" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/GkWLqSIAlGirJdYb1Z">via GIPHY</a></p>
+![](https://i.imgur.com/YYzPMIy.gif)
 
 GIF created with [EZGif](https://ezgif.com).
 
