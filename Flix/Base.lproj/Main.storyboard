@@ -262,7 +262,7 @@
         <scene sceneID="rJh-Oo-ePp">
             <objects>
                 <tabBarController id="A6S-At-rpy" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionIndicatorImage="play.rectangle.fill" catalog="system" id="zP1-92-PNE">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zP1-92-PNE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -280,7 +280,9 @@
         <scene sceneID="ifA-WV-UIl">
             <objects>
                 <navigationController id="Ody-ND-1JU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Posters" selectedImage="ticket.fill" catalog="system" id="Tkk-w9-8jq"/>
+                    <tabBarItem key="tabBarItem" title="Posters" image="ticket.fill" catalog="system" selectedImage="ticket.fill" id="Tkk-w9-8jq">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NSU-HU-JNO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -297,7 +299,9 @@
         <scene sceneID="lI8-nQ-TkV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xw2-Bj-uzd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Now Playing" selectedImage="play.rectangle.fill" catalog="system" id="iqU-4a-2NQ"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="play.rectangle.fill" catalog="system" selectedImage="play.rectangle.fill" id="iqU-4a-2NQ">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d93-gD-AL5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
