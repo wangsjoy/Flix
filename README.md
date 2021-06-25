@@ -42,6 +42,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+Back-Up Link (in case upload size restrictions): https://media.giphy.com/media/GkWLqSIAlGirJdYb1Z/source.gif
+
 ![](https://i.imgur.com/ZRmtEoa.gif)
 
 GIF created with [EZGif](https://ezgif.com).
