@@ -174,20 +174,35 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7y-Ep-4U7">
-                                        <rect key="frame" x="24" y="372" width="382" height="21"/>
+                                        <rect key="frame" x="24" y="436" width="382" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YyH-WW-v8f">
+                                        <rect key="frame" x="24" y="362" width="126" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="trailerPlay" translatesAutoresizingMaskIntoConstraints="NO" id="15P-EB-XGt">
+                                                <rect key="frame" x="0.0" y="2" width="35" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Play Trailer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vza-hL-KCs">
+                                                <rect key="frame" x="37" y="9" width="91" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="2MW-Im-red"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="DPa-Hv-yLg"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="d08-iR-bhd" appends="YES" id="eJi-42-cBE"/>
-                                </connections>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JcB-Y9-zD6"/>
@@ -199,17 +214,13 @@
                         <outlet property="posterView" destination="fZj-Z6-gwT" id="lyz-oq-U36"/>
                         <outlet property="synopsisLabel" destination="V7y-Ep-4U7" id="NSp-wh-pAn"/>
                         <outlet property="titleLabel" destination="FRq-6N-lqi" id="f3p-YW-yXh"/>
+                        <outlet property="trailerView" destination="YyH-WW-v8f" id="bCl-XD-uJA"/>
                         <segue destination="loI-wZ-izK" kind="presentation" identifier="trailerSegue" id="pm0-Xt-ZHL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFP-9i-Sq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="d08-iR-bhd">
-                    <connections>
-                        <action selector="onTap:" destination="mdg-tj-dwh" id="7Xy-vA-Xho"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="33" y="1579"/>
+            <point key="canvasLocation" x="31.884057971014496" y="1578.3482142857142"/>
         </scene>
         <!--Trailer View Controller-->
         <scene sceneID="zec-Dz-LfN">
@@ -220,7 +231,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRI-p1-VQe">
-                                <rect key="frame" x="38" y="57" width="356" height="301"/>
+                                <rect key="frame" x="20" y="32" width="374" height="776"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -300,6 +311,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="burst.fill" catalog="system" width="128" height="117"/>
+        <image name="trailerPlay" width="60" height="60"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

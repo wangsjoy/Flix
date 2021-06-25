@@ -14,12 +14,20 @@
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
+@property (weak, nonatomic) IBOutlet UIView *trailerView;
+
 @end
 
 @implementation DetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //add gesture recognition to the trailerView element
+    UITapGestureRecognizer *fingerTap =
+      [[UITapGestureRecognizer alloc] initWithTarget:self
+                                              action:@selector(onTap:)];
+    [self.trailerView addGestureRecognizer:fingerTap];
     
     //load in the poster images from url (string concatenation)
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
@@ -63,12 +71,11 @@
     NSLog(@"%@", trailerViewController.movieKey);
 }
 
-- (IBAction)onTap:(id)sender {
-    //on tap, perform segue
+//The event handling method for when trailerView element is pressed
+- (void)onTap:(UITapGestureRecognizer *)recognizer
+{
     [self performSegueWithIdentifier:@"trailerSegue" sender:nil];
 }
-
-
 
 
 @end
