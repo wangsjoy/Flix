@@ -68,27 +68,25 @@
            }
            else {
 
+               //parse through the returned JSON dictionary
                NSLog(@"Started Animation");
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               
                NSLog(@"%@", dataDictionary);
-               
                self.movies = dataDictionary[@"results"];
                
+               //debugging logging
                NSLog(@"Printing Movies:");
                for (NSDictionary *movie in self.movies){
                    NSLog(@"%@", movie);
                    NSLog(@"%@", movie[@"title"]);
                }
-               
-               NSLog(@"Printing Movies Alone:");
-               NSLog(@"%@", self.movies);
 
+               //set data and filteredData properties here
                self.data = self.movies;
                self.filteredData = self.data;
                
+               //reload collectionView once the network call is complete
                [self.collectionView reloadData];
-               
            }
        }];
     [task resume];
@@ -100,7 +98,8 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"detailsSegue"]){
+    if ([segue.identifier isEqualToString:@"detailsSegue"]){ //check segue identifier
+        //transfer movie data from tappedCell into DetailsViewController object
         UICollectionViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
         NSDictionary *movie = self.filteredData[indexPath.item];
@@ -114,9 +113,13 @@
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    //create reusable cell (dequeue procedure)
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
    
+    //load movie data related to index path
     NSDictionary *movie = self.filteredData[indexPath.item]; //right movie associated with right item
+    
+    //concatenate posterURL and load image
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
@@ -128,34 +131,31 @@
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    return self.movies.count; //uncommented out for search bar implementation
-    return self.filteredData.count;
+    return self.filteredData.count; //return filteredData cells
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 
-    if (searchText.length != 0) {
+    if (searchText.length != 0) { //if there is text in the search bar
         NSLog(@"Search greater than 1");
-
+        
+        //create predicate logic object for filtering
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
-            NSLog(@"Filtered: ");
-            NSLog(@"%@", evaluatedObject[@"title"]);
-            NSLog(@"End of Filtered: ");
             return [evaluatedObject[@"title"] containsString:searchText];
         }];
-        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
+        self.filteredData = [self.data filteredArrayUsingPredicate:predicate]; //reset filtered data
         
-        NSLog(@"%@", self.filteredData);
+        NSLog(@"%@", self.filteredData); //debugging logging
 
     }
     else {
-        self.filteredData = self.data;
+        self.filteredData = self.data; //reset filteredData to all movie data
     }
 
-    [self.collectionView reloadData];
-
+    [self.collectionView reloadData]; //reload collectionView
 }
 
+//cancel button functionality
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     self.searchBar.showsCancelButton = YES;
 }
@@ -163,7 +163,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
     self.searchBar.showsCancelButton = NO;
-    self.searchBar.text = @"";
+    self.searchBar.text = @""; //reset text in search bar to empty string when cancel is pressed
     [self.searchBar resignFirstResponder];
     
     self.filteredData = self.data; //reset filters

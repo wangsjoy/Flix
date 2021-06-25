@@ -18,65 +18,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-//    NSString *partOneAPI = @"https://api.themoviedb.org/3/movie/";
-//    NSString *partTwoAPI = @"/videos?api_key=f95fc0b1f5e8e70f10befe96260c1cd5&language=en-US";
-//
-//    NSString *stringPartialURL = [partOneAPI stringByAppendingString:self.movieKey];
-//    NSString *stringURL = [stringPartialURL stringByAppendingString:partTwoAPI];
-//
-//    NSLog(@"API Request: ");
-//    NSLog(@"%@", stringURL);
-//
-//    // Convert the url String to a NSURL object.
-//    NSURL *url = [NSURL URLWithString:stringURL];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-//
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//           if (error != nil) {
-//               NSLog(@"%@", [error localizedDescription]);
-//           }
-//           else {
-//
-//               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//
-//               NSLog(@"%@", dataDictionary);
-//
-//               NSString *trailerEnd = dataDictionary[@"results"][0][@"key"];
-//               NSString *trailerStart = @"https://www.youtube.com/watch?v=";
-//               NSString *trailerString = [trailerStart stringByAppendingString:trailerEnd];
-//               NSURL *trailerURL = [NSURL URLWithString:trailerString];
-//
-//               // Place the URL in a URL Request.
-//               NSURLRequest *request = [NSURLRequest requestWithURL:trailerURL
-//                                                        cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-//                                                    timeoutInterval:10.0];
-//               // Load Request into WebView.
-//               [self.webkitView loadRequest:request];
-//           }
-//       }];
-//
-//    [task resume];
-    
     [self fetchTrailer];
 }
 
 - (void)fetchTrailer{
-    // Load Trailer URL
+    
+    // Concatenate string with the appropriate url for API GET request
     NSString *partOneAPI = @"https://api.themoviedb.org/3/movie/";
     NSString *partTwoAPI = @"/videos?api_key=f95fc0b1f5e8e70f10befe96260c1cd5&language=en-US";
     NSString *stringPartialURL = [partOneAPI stringByAppendingString:self.movieKey];
     NSString *stringURL = [stringPartialURL stringByAppendingString:partTwoAPI];
     
+    // Logging for debugging
     NSLog(@"API Request: ");
     NSLog(@"%@", stringURL);
     
-    // Convert the url String to a NSURL object.
+    // Convert the url String to a NSURL object and send GET request.
     NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
@@ -84,10 +43,11 @@
            }
            else {
 
+               // Parse JSON Response Dictionary for trailer key.
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-
                NSLog(@"%@", dataDictionary);
 
+               // Concatenate the Trailer Key with the youtube link.
                NSString *trailerEnd = dataDictionary[@"results"][0][@"key"];
                NSString *trailerStart = @"https://www.youtube.com/watch?v=";
                NSString *trailerString = [trailerStart stringByAppendingString:trailerEnd];
