@@ -42,9 +42,14 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-Back-Up Link (in case upload size restrictions): https://media.giphy.com/media/GkWLqSIAlGirJdYb1Z/source.gif
-
+Demo of Good Wifi:
 ![](https://i.imgur.com/ZRmtEoa.gif)
+
+Demo of Poor Wifi:
+![](https://i.imgur.com/z0Fmblt.gif)
+
+Demo of No Wifi Connection:
+![](https://i.imgur.com/ftP1quN.gif)
 
 GIF created with [EZGif](https://ezgif.com).
 
